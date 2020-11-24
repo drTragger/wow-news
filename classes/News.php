@@ -11,6 +11,10 @@ class News
         $this->db = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
     }
 
+    /**
+     * Gets all the news from database
+     * @return array
+     */
     public function getAllNews()
     {
         $query = "SELECT news.id, news.title, news.description, news.created_at, users.user_name FROM news INNER JOIN users ON news.author_id = users.id;";
@@ -45,7 +49,7 @@ class News
 
         $query = "SELECT id FROM users WHERE user_name LIKE '{$_SESSION['login']}';";
         $result = $this->db->query($query);
-        $userId = (int)$result->fetch_row();
+        $userId = (int)$result->fetch_row()[0];
         if (!$userId) {
             $_SESSION['message'] = 'Failed to get user id. Please, re-login and try again.';
             Router::redirect();
@@ -62,6 +66,10 @@ class News
         return $this->db->query($query);
     }
 
+    /**
+     * Gets the last added news item
+     * @return int
+     */
     public function getLatestNewsId()
     {
         $query = "SELECT id FROM news WHERE id = (SELECT MAX(id) FROM news);";
@@ -69,6 +77,11 @@ class News
         return (int)$result->fetch_row()[0];
     }
 
+    /**
+     * Gets the news item by id
+     * @param int $id
+     * @return array
+     */
     public function getNewsItem($id)
     {
         $query = "SELECT news.id, news.title, news.description, news.created_at, users.user_name FROM news INNER JOIN users ON news.author_id = users.id WHERE news.id = '$id';";
@@ -81,9 +94,14 @@ class News
         return $this->news;
     }
 
+    /**
+     * Deletes the news item by id
+     * @param int $id
+     * @return bool|mysqli_result
+     */
     public function delete($id)
     {
         $query = "DELETE FROM news WHERE id = '$id';";
-        $this->db->query($query);
+        return $this->db->query($query);
     }
 }

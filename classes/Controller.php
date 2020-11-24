@@ -67,13 +67,18 @@ class Controller
     public function newsItem()
     {
         $this->view->page = 'news_item';
-        $this->view->render($this->news->getNewsItem($_SESSION['id']));
+        $id = (isset($_GET['id'])) ? filter_input(INPUT_GET, 'id') : $_SESSION['id'];
+        $this->view->render($this->news->getNewsItem($id));
     }
 
     public function delete()
     {
         $id = filter_input(INPUT_POST, 'delete');
-        $this->news->delete($id);
+        if ($this->news->delete($id)) {
+            $_SESSION['message'] = 'Deleted successfully';
+        } else {
+            $_SESSION['message'] = 'There was a problem deleting the news';
+        }
         Router::redirect();
     }
 }

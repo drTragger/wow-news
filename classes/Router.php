@@ -17,7 +17,7 @@ class Router
             $action = 'login';
         } elseif (isset($_GET['edit_id'])){
             $action = 'edit';
-        } elseif (isset($_SESSION['id'])){
+        } elseif (isset($_SESSION['id']) || isset($_GET['id'])){
             $action = 'newsItem';
         } elseif ($_GET['action'] === 'logout') {
             $action = 'logout';

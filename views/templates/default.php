@@ -16,6 +16,7 @@
 <body>
 <header>
     <?php if (isset($_SESSION['login'])): ?>
+        <p class="greeting">Hello, <?= ucfirst($_SESSION['login']) ?></p>
         <a href="?action=logout">logout</a>
     <?php endif; ?>
 </header>

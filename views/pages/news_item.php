@@ -1,5 +1,5 @@
 <a href="/">To main page</a>
-<h2>You have just added these news:</h2>
+<h2>News item:</h2>
 <div class="news">
     <?php if (isset($data)): ?>
     <table>

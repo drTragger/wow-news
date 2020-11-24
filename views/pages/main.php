@@ -1,12 +1,11 @@
 <?php if (isset($_SESSION['login'])): ?>
-    <p class="greeting">Hello, <?= ucfirst($_SESSION['login']) ?></p>
     <a href="?action=edit">Create Ad</a>
 <?php else: ?>
     <form method="post">
         <div class="form-group">
             <label for="username">User Name:</label>
             <input type="text" name="username" class="form-control" id="username" placeholder="Enter user name" required
-                   value="<?= $_SESSION['username'] ?>">
+                   value="<?= $_SESSION['username'] ?>" autofocus>
         </div>
         <div class="form-group">
             <label for="pwd">Password:</label>
@@ -21,7 +20,7 @@
         <table>
             <?php foreach ($data as $newsItem) : ?>
                 <tr>
-                    <td><?= $newsItem['title'] ?></td>
+                    <td><a href="?id=<?= $newsItem['id'] ?>"><?= $newsItem['title'] ?></a></td>
                 </tr>
                 <tr>
                     <td><?= $newsItem['description'] ?></td>
