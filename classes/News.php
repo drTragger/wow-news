@@ -12,12 +12,27 @@ class News
     }
 
     /**
-     * Gets all the news from database
+     * Gets the paginated news from database
+     * @param int $page
      * @return array
      */
-    public function getAllNews()
+    public function getNews($page)
     {
-        $query = "SELECT news.id, news.title, news.description, news.created_at, users.user_name FROM news INNER JOIN users ON news.author_id = users.id;";
+        // Getting total amount of news
+        $query = "SELECT COUNT(title) FROM news;";
+        $result = $this->db->query($query);
+        $totalNews = (int)$result->fetch_row()[0];
+
+        // Calculating LIMIT and OFFSET
+        $limit = LIMIT;
+        $offset = $totalNews - $limit * $page;
+        if ($offset < 0) {
+            $limit = $totalNews % LIMIT;
+            $offset = 0;
+        }
+
+        // Getting the portion of news
+        $query = "SELECT news.id, news.title, news.description, news.created_at, users.user_name FROM news INNER JOIN users ON news.author_id = users.id LIMIT $limit OFFSET $offset;";
         $result = $this->db->query($query);
         if ($result) {
             while ($tmp = $result->fetch_assoc()) {
@@ -30,6 +45,7 @@ class News
     /**
      * @param string $title
      * @param string $description
+     * @param int|null $editionId
      * @return string
      */
     public function edit($title, $description, $editionId = NULL)

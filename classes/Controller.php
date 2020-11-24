@@ -17,7 +17,8 @@ class Controller
     public function main()
     {
         $this->view->page = 'main';
-        $this->view->render($this->news->getAllNews());
+        $page = (isset($_GET['page'])) ? filter_input(INPUT_GET, 'page') : 1;
+        $this->view->render($this->news->getNews($page));
     }
 
     public function login()
