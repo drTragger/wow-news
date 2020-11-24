@@ -8,3 +8,16 @@ main {
     flex-direction: column;
     align-items: center;
 }
+
+.news {
+    margin-top: 3rem;
+    width: 60%;
+}
+
+.news td {
+    padding-top: 1rem;
+}
+
+.no-news {
+    text-align: center;
+}

@@ -28,13 +28,7 @@ class User
             Router::redirect();
         }
 
-        $query = "SELECT * FROM users;";
-        $result = $this->db->query($query);
-        if ($result) {
-            while ($tmp = $result->fetch_assoc()) {
-                $this->users[] = $tmp;
-            }
-        }
+        $this->getAllUsers();
 
         $noUser = true;
         foreach ($this->users as $user) {
@@ -60,5 +54,17 @@ class User
                 return true;
             }
         }
+    }
+
+    public function getAllUsers()
+    {
+        $query = "SELECT * FROM users;";
+        $result = $this->db->query($query);
+        if ($result) {
+            while ($tmp = $result->fetch_assoc()) {
+                $this->users[] = $tmp;
+            }
+        }
+        return $this->users;
     }
 }
