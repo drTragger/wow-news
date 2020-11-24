@@ -18,6 +18,7 @@ class Controller
     {
         $this->view->page = 'main';
         $page = (isset($_GET['page'])) ? filter_input(INPUT_GET, 'page') : 1;
+        View::$currentPage = $page;
         $this->view->render($this->news->getNews($page));
     }
 

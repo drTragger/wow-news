@@ -5,9 +5,10 @@ class View
 {
     public $template = 'default';
     public $page;
+    public static $currentPage = NULL;
+    public static $lastPage = NULL;
 
     /**
-     * Used for rendering the template page;
      * @param array $data
      */
     public function render($data)

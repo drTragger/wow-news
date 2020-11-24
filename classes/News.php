@@ -22,6 +22,7 @@ class News
         $query = "SELECT COUNT(title) FROM news;";
         $result = $this->db->query($query);
         $totalNews = (int)$result->fetch_row()[0];
+        View::$lastPage = (int)ceil($totalNews / LIMIT);
 
         // Calculating LIMIT and OFFSET
         $limit = LIMIT;
