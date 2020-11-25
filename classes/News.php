@@ -33,7 +33,7 @@ class News
         }
 
         // Getting the portion of news
-        $query = "SELECT news.id, news.title, news.description, news.created_at, users.user_name FROM news INNER JOIN users ON news.author_id = users.id LIMIT $limit OFFSET $offset;";
+        $query = "SELECT news.id, news.title, news.description, news.created_at, users.user_name FROM news INNER JOIN users ON news.author_id LIKE users.id LIMIT $limit OFFSET $offset;";
         $result = $this->db->query($query);
         if ($result) {
             while ($tmp = $result->fetch_assoc()) {

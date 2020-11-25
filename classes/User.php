@@ -18,8 +18,8 @@ class User
      */
     public function login($username, $password)
     {
-        $username = strtolower(trim($username));
-        $password = strtolower(trim($password));
+        $username = mb_strtolower(trim($username));
+        $password = mb_strtolower(trim($password));
         if (empty($username)) {
             $_SESSION['message'] = 'Username should not be empty';
             Router::redirect();

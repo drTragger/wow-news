@@ -2,13 +2,24 @@
     margin: 0;
     padding: 0;
 }
+
+html, body {
+    height: 100%;
+}
+
+body{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0fr 1fr 0fr;
+    position: relative;
+}
+
 header {
     height: 7rem;
     background-color: #3d3d3d;
     color: #cdcdcd;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 header h1 a, header h1 a:hover {
@@ -136,4 +147,13 @@ main {
 .no-news {
     text-align: center;
     font-size: 1.5rem;
+}
+
+footer {
+    height: 4rem;
+    background-color: #3d3d3d;
+    color: #cdcdcd;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 4rem;
 }

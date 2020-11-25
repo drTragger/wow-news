@@ -32,7 +32,7 @@
     <?php include_once 'views' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . $this->page . '.php' ?>
 </main>
 <footer>
-
+   2020 Made by Misha for Wow-Corporation &copy;
 </footer>
 </body>
 </html>

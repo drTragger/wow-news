@@ -84,6 +84,11 @@ class Controller
         } else {
             $_SESSION['message'] = 'There was a problem deleting the news';
         }
-        Router::redirect();
+        if (isset($_GET['page'])) {
+            $page = filter_input(INPUT_GET, 'page');
+            header('Location: ' . $_SERVER['PHP_SELF'] . '?page=' . $page);
+        } else {
+            Router::redirect();
+        }
     }
 }
