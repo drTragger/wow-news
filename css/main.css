@@ -2,6 +2,36 @@
     margin: 0;
     padding: 0;
 }
+header {
+    height: 7rem;
+    background-color: #3d3d3d;
+    color: #cdcdcd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 a, header h1 a:hover {
+    color: #cdcdcd;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+.user {
+    width: 10vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.8rem;
+}
+
+.logout, .logout:hover {
+    color: #3d3d3d;
+    text-decoration: none;
+    background-color: #cdcdcd;
+    border-radius: 5px;
+    padding: 3px;
+}
 
 main {
     display: flex;
@@ -9,15 +39,101 @@ main {
     align-items: center;
 }
 
+.message {
+    font-size: 1.8rem;
+    width: 100%;
+    background-color: #fff000;
+    text-align: center;
+}
+
+.form-group:first-of-type {
+    margin-top: 3rem;
+}
+
+.create, .create:hover {
+    background-color: #1ecd97;
+    text-decoration: none;
+    color: #ffffff;
+    width: 15vw;
+    text-align: center;
+    font-size: 2rem;
+    height: 4rem;
+    border-radius: 2rem;
+    line-height: 4rem;
+    margin-top: 1rem;
+}
+
+.pagination:not(:last-of-type) {
+    margin-right: 2rem;
+}
+
 .news {
     margin-top: 3rem;
     width: 60%;
 }
 
-.news td {
-    padding-top: 1rem;
+.table {
+    background-color: #cdcdcd;
+    width: 100%;
+    border-radius: 20px;
+    font-size: 1.6rem;
+    color: #000;
+}
+
+.table table {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.table td{
+    padding: 1rem;
+    width: 100%;
+}
+
+.title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+.title a {
+    color: #3d3d3d;
+}
+
+.title, .description {
+    box-sizing: border-box;
+    display: block;
+}
+
+.table .username, .table .date {
+    width: 50%;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.table .date {
+    text-align: right;
+}
+
+.delete, .edit {
+    font-size: 1.8rem;
+}
+
+.delete {
+    color: #ff0000;
+    text-align: right;
+}
+
+.edit {
+    color: #ff7000;
+}
+
+.action button {
+    border: none;
+    background-color: transparent;
 }
 
 .no-news {
     text-align: center;
+    font-size: 1.5rem;
 }

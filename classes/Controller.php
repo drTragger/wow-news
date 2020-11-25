@@ -53,7 +53,10 @@ class Controller
         $title = filter_input(INPUT_POST, 'title');
         $description = filter_input(INPUT_POST, 'description');
         $id = (isset($_POST['edition'])) ? $_POST['edition'] : NULL;
-        if ($id) {
+        if (mb_strlen($title) > 255) {
+            $_SESSION['message'] = 'Title should not be longer than 255 symbols';
+            Router::redirect();
+        } elseif ($id) {
             $this->news->edit($title, $description, $id);
             Router::redirect();
         } elseif ($this->news->edit($title, $description)) {

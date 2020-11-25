@@ -15,9 +15,12 @@
 </head>
 <body>
 <header>
+    <h1><a href="/">WoW News</a></h1>
     <?php if (isset($_SESSION['login'])): ?>
-        <p class="greeting">Hello, <?= ucfirst($_SESSION['login']) ?></p>
-        <a href="?action=logout">logout</a>
+        <div class="user">
+            <p class="greeting">Hello, <?= ucfirst($_SESSION['login']) ?></p>
+            <a href="?action=logout" class="logout">logout</a>
+        </div>
     <?php endif; ?>
 </header>
 <main>

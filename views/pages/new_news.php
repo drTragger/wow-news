@@ -1,11 +1,11 @@
-<h2>Create new news</h2>
+<h2>Create news</h2>
 <form action="?action=news_item" method="post">
     <?php if (isset($_GET['edit_id'])): ?>
         <input type="hidden" name="edition" value="<?= $data['id'] ?>">
     <?php endif; ?>
     <div class="form-group">
         <label for="title">Title:</label>
-        <input type="text" name="title" class="form-control" id="title" placeholder="Enter the title" required value="<?= $data['title'] ?>">
+        <input type="text" name="title" class="form-control" id="title" placeholder="Enter the title" required value="<?= $data['title'] ?>" maxlength="255">
     </div>
     <div class="form-group">
         <label for="desc">Description:</label>
