@@ -44,6 +44,7 @@ class News
     }
 
     /**
+     * Adds of edits the news
      * @param string $title
      * @param string $description
      * @param int|null $editionId
@@ -54,16 +55,36 @@ class News
         $title = trim($title);
         $description = trim($description);
 
+        $titleLength = mb_strlen($title);
+        $descriptionLength = mb_strlen($description);
+
+        // Validating the fields
         if (empty($title)) {
-            $_SESSION['message'] = 'Title should not be empty';
+            $message = 'Title should not be empty';
             $_SESSION['description'] = $description;
-            Router::redirect();
         } elseif (empty($description)) {
-            $_SESSION['message'] = 'Description should not be empty';
+            $message = 'Description should not be empty';
             $_SESSION['title'] = $title;
+        } elseif ($titleLength < 5) {
+            $message = 'Title should not be shorter than 5 symbols';
+            $_SESSION['description'] = $description;
+        } elseif ($titleLength > 255) {
+            $message = 'Title should not be longer than 255 symbols';
+            $_SESSION['description'] = $description;
+        } elseif ($descriptionLength < 5) {
+            $message = "Description should not be shorter than 5 symbols";
+            $_SESSION['title'] = $title;
+        } elseif ($descriptionLength > 65535) {
+            $message = "Description should not be longer than 65535 symbols";
+            $_SESSION['title'] = $title;
+        }
+
+        if (isset($message)) {
+            $_SESSION['message'] = $message;
             Router::redirect();
         }
 
+        // Getting user id for displaying in news
         $query = "SELECT id FROM users WHERE user_name LIKE '{$_SESSION['login']}';";
         $result = $this->db->query($query);
         $userId = (int)$result->fetch_row()[0];

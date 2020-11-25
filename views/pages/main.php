@@ -5,11 +5,12 @@
         <div class="form-group">
             <label for="username">User Name:</label>
             <input type="text" name="username" class="form-control" id="username" placeholder="Enter user name" required
-                   value="<?= $_SESSION['username'] ?>" autofocus>
+                   value="<?= $_SESSION['username'] ?>" autofocus minlength="5" maxlength="60">
         </div>
         <div class="form-group">
             <label for="pwd">Password:</label>
-            <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password" required>
+            <input type="password" name="password" class="form-control" id="pwd" placeholder="Enter password"
+                   minlength="5" required maxlength="60">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>

@@ -9,6 +9,7 @@ class View
     public static $lastPage = NULL;
 
     /**
+     * Renders the page where $data can be seen
      * @param array $data
      */
     public function render($data)

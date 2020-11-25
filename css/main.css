@@ -7,7 +7,7 @@ html, body {
     height: 100%;
 }
 
-body{
+body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0fr 1fr 0fr;
@@ -96,7 +96,7 @@ main {
     width: 100%;
 }
 
-.table td{
+.table td {
     padding: 1rem;
     width: 100%;
 }

@@ -12,6 +12,7 @@ class User
     }
 
     /**
+     * logging in a user or creating a new one if doesn't exist
      * @param string $username
      * @param string $password
      * @return bool
@@ -20,16 +21,34 @@ class User
     {
         $username = mb_strtolower(trim($username));
         $password = mb_strtolower(trim($password));
+
+        $usernameLength = mb_strlen($username);
+        $passwordLength = mb_strlen($password);
+
+        // Validating the fields
         if (empty($username)) {
-            $_SESSION['message'] = 'Username should not be empty';
-            Router::redirect();
+            $message = 'Username should not be empty';
+        } elseif ($usernameLength < 5) {
+            $message = "Username should not be shorter than 5 symbols";
+        } elseif ($usernameLength > 60) {
+            $message = 'Username should not be longer than 60 symbols';
         } elseif (empty($password)) {
-            $_SESSION['message'] = 'Password should not be empty';
+            $message = 'Password should not be empty';
+        } elseif ($passwordLength < 5) {
+            $message = 'Password should not be shorter than 5 symbols';
+        } elseif ($passwordLength > 60) {
+            $message = 'Password should not be longer than 60 symbols';
+        }
+
+        if (isset($message)) {
+            $_SESSION['message'] = $message;
             Router::redirect();
+            exit();
         }
 
         $this->getAllUsers();
 
+        // Logging in the user if exists
         $noUser = true;
         foreach ($this->users as $user) {
             if ($user['user_name'] === $username) {
@@ -46,6 +65,7 @@ class User
             }
         }
 
+        // Creating a new user and logging in
         if ($noUser) {
             $pwdHash = password_hash($password, PASSWORD_DEFAULT);
             $query = "INSERT INTO users (id, user_name, password) VALUES (NULL, '$username', '$pwdHash');";
@@ -56,7 +76,11 @@ class User
         }
     }
 
-    public function getAllUsers()
+    /**
+     * Gets all the users
+     * @return array
+     */
+    private function getAllUsers()
     {
         $query = "SELECT * FROM users;";
         $result = $this->db->query($query);

@@ -4,5 +4,5 @@
     <?php if (isset($data)): ?>
         <?php require_once 'views' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'all_news.php' ?>
     <?php else: ?>
-    <p class="no-news">Error loading news.</p>
+    <p class="no-news">Error loading news</p>
 <?php endif; ?>
