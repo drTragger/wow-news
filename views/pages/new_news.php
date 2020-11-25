@@ -1,4 +1,8 @@
-<h2>Create news</h2>
+<?php if (isset($_GET['edit_id'])): ?>
+    <h2>Update news</h2>
+<?php else: ?>
+    <h2>Create news</h2>
+<?php endif; ?>
 <form action="?action=news_item" method="post">
     <?php if (isset($_GET['edit_id'])): ?>
         <input type="hidden" name="edition" value="<?= $data['id'] ?>">
